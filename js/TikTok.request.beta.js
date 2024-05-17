@@ -745,33 +745,33 @@ class ENV {
 	}
 }
 
-var Settings$2 = {
+var Settings$3 = {
 	Switch: true
 };
 var Default = {
-	Settings: Settings$2
+	Settings: Settings$3
 };
 
 var Default$1 = /*#__PURE__*/Object.freeze({
 	__proto__: null,
-	Settings: Settings$2,
+	Settings: Settings$3,
 	default: Default
 });
 
-var Settings$1 = {
+var Settings$2 = {
 	Switch: true
 };
 var WeChat = {
-	Settings: Settings$1
+	Settings: Settings$2
 };
 
 var WeChat$1 = /*#__PURE__*/Object.freeze({
 	__proto__: null,
-	Settings: Settings$1,
+	Settings: Settings$2,
 	default: WeChat
 });
 
-var Settings = {
+var Settings$1 = {
 	Switch: true,
 	CountryCode: "TW",
 	Carrier: "中華電信"
@@ -817,21 +817,35 @@ var Configs = {
 	}
 };
 var TikTok = {
-	Settings: Settings,
+	Settings: Settings$1,
 	Configs: Configs
 };
 
 var TikTok$1 = /*#__PURE__*/Object.freeze({
 	__proto__: null,
 	Configs: Configs,
-	Settings: Settings,
+	Settings: Settings$1,
 	default: TikTok
+});
+
+var Settings = {
+	Switch: true
+};
+var YouTube = {
+	Settings: Settings
+};
+
+var YouTube$1 = /*#__PURE__*/Object.freeze({
+	__proto__: null,
+	Settings: Settings,
+	default: YouTube
 });
 
 var Database$1 = Database = {
 	"Default": Default$1,
 	"WeChat": WeChat$1,
 	"TikTok": TikTok$1,
+	"YouTube": YouTube$1,
 };
 
 /**

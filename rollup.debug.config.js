@@ -40,4 +40,14 @@ export default [
 		},
 		plugins: [json(), commonjs()],
 	},
+	{
+		input: 'src/YouTube.request.beta.js',
+		output: {
+			file: 'js/YouTube.request.beta.js',
+			banner: '/* README: https://github.com/VirgilClyne/GetSomeFries */',
+			format: 'es'
+		},
+		plugins: [json(), commonjs()],
+		
+	},
 ];
