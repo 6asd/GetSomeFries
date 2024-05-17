@@ -48,6 +48,14 @@ export default [
 			format: 'es'
 		},
 		plugins: [json(), commonjs()],
-		
+	},
+	{
+		input: 'src/YouTube.response.beta.js',
+		output: {
+			file: 'js/YouTube.response.beta.js',
+			banner: '/* README: https://github.com/VirgilClyne/GetSomeFries */',
+			format: 'es'
+		},
+		plugins: [json(), commonjs()],
 	},
 ];
