@@ -919,7 +919,7 @@ function setENV(name, platforms, database) {
 	return { Settings, Caches, Configs };
 }
 
-const $ = new ENV("🍟 GetSomeFries: ▶️ YouTube v0.1.0(1031) response.beta");
+const $ = new ENV("🍟 GetSomeFries: ▶️ YouTube v0.1.0(1037) response.beta");
 
 /***************** Processing *****************/
 // 解构URL
@@ -956,20 +956,23 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 					//$response.body = M3U8.stringify(body);
 					break;
 				case "text/html":
-					$.log(`🚧 $response.body: ${$response.body}`, "");
-					document.write($response.body);
+					//$.log(`🚧 $response.body: ${$response.body}`, "");
+					//document.write($response.body);
 					// 路径判断
 					switch (PATH) {
 						case "/watch":
-							//$response.body = $response.body.replace('"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH",','"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH","controlsType":"3",');
+							//$response.body = $response.body.replace('"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH",','"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH","useNativeControls":true,"controlsType":"3","annotationsLoadPolicy":3,');
+							$response.body = $response.body.replace('"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH",','"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH","useNativeControls":true,');
 							//$response.body = $response.body.replace('"platform":"DESKTOP",','"platform":"MOBILE",');
 							//let script = document.querySelector("head > script:nth-child(31)");
-							let script = document.head.querySelector("script:nth-child(22)");
+							//let script = document.head.querySelector("script:nth-child(21)");
 							//$.log(`🚧 script: ${script.outerHTML}`, "");
-							$.log(`🚧 script: ${script.innerHTML}`, "");
-							const CFGRegex = /ytcfg\.set\((?<ytcfg>{.+})\)/;
-							let ytcfg = script.innerHTML.match(CFGRegex)?.groups.ytcfg || null;
-							$.log(`🚧 ytcfg: ${ytcfg}`, "");
+							//$.log(`🚧 script: ${script.innerHTML}`, "");
+							//const CFGRegex = /ytcfg\.set\((?<ytcfg>{.+})\)/;
+							//let ytcfg = script.innerHTML.match(CFGRegex)?.groups.ytcfg || null;
+							//$.log(`🚧 ytcfg: ${ytcfg}`, "");
+							//let heads = document.head.childNodes;
+							//heads.forEach((head, i) => $.log(`🚧 child[${i}]: ${head.outerHTML}`, ""));
 							//document.getElementById("movie_player").classList.add("ytp-hide-controls");
 							//document.getElementById("movie_player").classList.add("ytp-native-controls");
 							//document.getElementById("movie_player").classList.remove("ytp-branding-shown");
@@ -992,7 +995,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							//document.body.prepend(script);
 							//body.querySelector("body > script:nth-child(10)").textContent = "window.yt.config_.WEB_PLAYER_CONTEXT_CONFIGS['WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH'].controlsType = 3; window.yt.config_.WEB_PLAYER_CONTEXT_CONFIGS['WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH'].platform = 'MOBILE';" + script;
 							break;
-					}					$response.body = document.documentElement.outerHTML;
+					}					//$response.body = document.documentElement.outerHTML;
 					break;
 				case "text/xml":
 				case "text/plist":
