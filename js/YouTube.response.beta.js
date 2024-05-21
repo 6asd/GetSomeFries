@@ -919,7 +919,7 @@ function setENV(name, platforms, database) {
 	return { Settings, Caches, Configs };
 }
 
-const $ = new ENV("🍟 GetSomeFries: ▶️ YouTube v0.1.0(1037) response.beta");
+const $ = new ENV("🍟 GetSomeFries: ▶️ YouTube v0.1.1(1051) response.beta");
 
 /***************** Processing *****************/
 // 解构URL
@@ -938,7 +938,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 		case true:
 		default:
 			// 创建空数据
-			let body = {};
+			let body;
 			// 格式判断
 			switch (FORMAT) {
 				case undefined: // 视为无body
@@ -958,12 +958,28 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "text/html":
 					//$.log(`🚧 $response.body: ${$response.body}`, "");
 					//document.write($response.body);
+					body = new DOMParser().parseFromString($response.body, FORMAT);
 					// 路径判断
 					switch (PATH) {
 						case "/watch":
 							//$response.body = $response.body.replace('"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH",','"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH","useNativeControls":true,"controlsType":"3","annotationsLoadPolicy":3,');
-							$response.body = $response.body.replace('"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH",','"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH","useNativeControls":true,');
+							//$response.body = $response.body.replace('"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH",','"contextId":"WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH","useNativeControls":true,');
 							//$response.body = $response.body.replace('"platform":"DESKTOP",','"platform":"MOBILE",');
+							let script = document.createElement("script");
+							//script.innerHTML += "console.log('window.yt');";
+							//script.innerHTML += "console.log('window.ytcfg');";
+							//script.innerHTML += "window.yt.config_.WEB_PLAYER_CONTEXT_CONFIGS.WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH.useNativeControls = true;";
+							script.innerHTML += "window.ytcfg.data_.WEB_PLAYER_CONTEXT_CONFIGS.WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH.useNativeControls = true;";
+							script.innerHTML += "window.ytcfg.data_.WEB_PLAYER_CONTEXT_CONFIGS.WEB_PLAYER_CONTEXT_CONFIG_ID_MWEB_WATCH.controlsType = '3';";
+							body.head.append(script);
+							//body.body.prepend(script);
+							//let script = body.head.querySelector("script:nth-child(3)");
+							//let head = body.querySelector("head");
+							//$.log(`🚧 script: ${head.textContent}`, "");
+							//$.log(`🚧 script: ${head.outerHTML}`, "");
+							//let script = body.querySelector("head > script:nth-child(1)");
+							//script.innerHTML += "window.ytcfg.set({WEB_PLAYER_CONTEXT_CONFIGS:{WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH:{useNativeControls:true}}});";
+							//script.innerHTML += "window.ytcfg.data_.WEB_PLAYER_CONTEXT_CONFIGS.WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH.useNativeControls = true;";
 							//let script = document.querySelector("head > script:nth-child(31)");
 							//let script = document.head.querySelector("script:nth-child(21)");
 							//$.log(`🚧 script: ${script.outerHTML}`, "");
@@ -986,7 +1002,8 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							//$.log(`🚧 nonce: ${document.querySelector('head > script:nth-child(1)').nonce}`, "");
 							//script.nonce = document.querySelector('head > script:nth-child(1)').nonce;
 							//script.innerHTML = "window.yt.WEB_PLAYER_CONTEXT_CONFIGS['WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH'].controlsType = 3; window.yt.WEB_PLAYER_CONTEXT_CONFIGS['WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH'].platform = 'MOBILE';";
-							//$.log(`🚧 newScript: ${script.outerHTML}`, "");
+							//$.log(`🚧 script: ${script.textContent}`, "");
+							$.log(`🚧 script: ${script.outerHTML}`, "");
 							//let newScript = document.adoptNode(script);
 							//for (const child of document.documentElement.childNodes) {
 							//	$.log(`🚧 child: ${child.outerHTML}`, "")
@@ -995,7 +1012,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							//document.body.prepend(script);
 							//body.querySelector("body > script:nth-child(10)").textContent = "window.yt.config_.WEB_PLAYER_CONTEXT_CONFIGS['WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH'].controlsType = 3; window.yt.config_.WEB_PLAYER_CONTEXT_CONFIGS['WEB_PLAYER_CONTEXT_CONFIG_ID_KEVLAR_WATCH'].platform = 'MOBILE';" + script;
 							break;
-					}					//$response.body = document.documentElement.outerHTML;
+					}					$response.body = body.documentElement.outerHTML;
 					break;
 				case "text/xml":
 				case "text/plist":
