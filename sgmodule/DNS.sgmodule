@@ -162,14 +162,17 @@ goo.gl = server:https://dns.google/dns-query // Google URL Shortener
 *.alibabausercontent.com = server:223.5.5.5 // 阿里用户上传资料
 *.mmstat.com = server:223.5.5.5 // mmstat 数据统计 广告追踪
 tb.cn = server:223.5.5.5 // 淘宝短网址
+*.dingtalk.cn = server:223.5.5.5 // 钉钉
 
 # > 阿里云
 # refer: https://www.alidns.com
 *.aliyun.* = server:223.5.5.5 // 阿里云
+*.alipan.com = server:223.5.5.5 // 阿里云盘
 *.aliyuncdn.* = server:223.5.5.5 // 阿里云 CDN
 *.aliyuncs.com = server:223.5.5.5 // 阿里云 API 服务
 *.aliyunddos????.com = server:223.5.5.5 // 阿里云 DDoS防护
 *.aliyundrive.com = server:223.5.5.5 // 阿里云盘
+*.aliyundrive.net = server:223.5.5.5 // 阿里云盘
 *.aliyundun.com = server:223.5.5.5 // 阿里云盾
 *.aliyundunwaf.com = server:223.5.5.5 // 阿里云盾 Web 应用防火墙
 *.aliyun-inc.com = server:223.5.5.5 // 阿里云 内部
